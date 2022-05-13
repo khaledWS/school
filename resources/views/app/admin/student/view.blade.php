@@ -16,12 +16,12 @@
                         <!--begin::Avatar-->
                         <div class="symbol symbol-100px symbol-circle mb-7">
                             <img style="background-image: url({{asset('assets/media/avatars/blank.png')}})"
-                                src="{{$student->getPicture()}}" alt="{{$student->fullName()}} picture" />
+                                src="{{$student_picture}}" alt="{{$student_fullName}} picture" />
                         </div>
                         <!--end::Avatar-->
                         <!--begin::Name-->
                         <a href="#"
-                            class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-3">{{$student->fullName()}}</a>
+                            class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-3">{{$student_fullName}}</a>
                         <!--end::Name-->
                         <!--begin::Position-->
                         <div class="mb-9">
@@ -154,7 +154,13 @@
                         data-kt-menu="true">
                         <!--begin::Menu item-->
                         <div class="menu-item px-5">
-                            <a href="{{route('delete-student')}}" class="menu-link text-danger px-5">حذف الطالب</a>
+                            <a href="{{route('delete-student', $student->id)}}" class="menu-link text-danger px-5">حذف
+                                الطالب</a>
+                        </div>
+                        <!--end::Menu item-->
+                        <!--begin::Menu item-->
+                        <div class="menu-item px-5">
+                            <a id="test-button" href="/" class="menu-link  px-5">TEST</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -202,25 +208,6 @@
                             <div class="card-title flex-column">
                                 <h2 class="mb-1">ملفات</h2>
                             </div>
-                            {{--
-                            <!--begin::Search-->
-                            <div class="d-flex align-items-center position-relative my-1">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none">
-                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
-                                            transform="rotate(45 17.0365 15.1223)" fill="black" />
-                                        <path
-                                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                            fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <input type="text" data-kt-filemanager-table-filter="search"
-                                    class="form-control form-control-solid w-250px ps-15" placeholder="بحث ملفات" />
-                            </div>
-                            <!--end::Search--> --}}
                             <!--end::Card title-->
                             <!--begin::Card toolbar-->
                             <div class="card-toolbar">
@@ -260,15 +247,7 @@
                                 <thead>
                                     <!--begin::Table row-->
                                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                        {{-- <th class="w-10px pe-2">
-                                            <div
-                                                class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                    data-kt-check-target="#kt_file_manager_list .form-check-input"
-                                                    value="1" />
-                                            </div>
-                                        </th> --}}
-                                        <th class="min-w-250px">Name</th>
+                                        <th class="min-w-250px"></th>
                                         <th class="w-125px"></th>
                                     </tr>
                                     <!--end::Table row-->
@@ -276,8 +255,8 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="fw-bold text-gray-600">
-                                    @if($student->GetFiles() !== null)
-                                    @foreach ($student->getFiles() as $key => $file)
+                                    @if($student_files !== null)
+                                    @foreach ($student_files as $key => $file)
                                     <tr>
                                         <!--begin::Name=-->
                                         <td>
@@ -293,7 +272,7 @@
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->
-                                                <a href="#" class="text-gray-800 text-hover-primary">{{$key}}</a>
+                                                <span class="text-gray-800 text-hover-primary">{{$key}}</span>
                                             </div>
                                         </td>
                                         <!--end::Name=-->
@@ -325,20 +304,17 @@
                                                         data-kt-menu="true">
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
-                                                            <a href="{{route('download', ['filename' => $file,'disk' => 'students-files'])}}"
-                                                                class="menu-link px-3">Download File</a>
-                                                        </div>
-                                                        <!--end::Menu item-->
-                                                        <!--begin::Menu item-->
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
-                                                                data-kt-filemanager-table="rename">Rename</a>
+                                                            <a href="{{route('download',
+                                                            ['filename' => $file,
+                                                            'disk' => 'student-files',
+                                                            'name' => $key])}}" class="menu-link px-3">تنزيل
+                                                                ملف</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                         <!--begin::Menu item-->
                                                         <div class="menu-item px-3">
                                                             <a href="#" class="menu-link text-danger px-3"
-                                                                data-kt-filemanager-table-filter="delete_row">Delete</a>
+                                                                data-kt-filemanager-table-filter="delete_row">حذف</a>
                                                         </div>
                                                         <!--end::Menu item-->
                                                     </div>
@@ -351,7 +327,7 @@
                                     </tr>
                                     @endforeach
                                     @else
-                                    <h3>No Files</h3>
+                                    <h3>لا يوجد ملفات</h3>
                                     @endif
                                 </tbody>
                                 <!--end::Table body-->
@@ -372,7 +348,7 @@
                                     <!--begin::Modal header-->
                                     <div class="modal-header">
                                         <!--begin::Modal title-->
-                                        <h2 class="fw-bolder">Upload files</h2>
+                                        <h2 class="fw-bolder">تحميل ملفات</h2>
                                         <!--end::Modal title-->
                                         <!--begin::Close-->
                                         <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -400,12 +376,12 @@
                                             <div class="dropzone dropzone-queue mb-2" id="kt_dropzonejs_example_2">
                                                 <!--begin::Controls-->
                                                 <div class="dropzone-panel mb-lg-0 mb-2">
-                                                    <a class="dropzone-select btn btn-sm btn-primary me-2">Attach
-                                                        files</a>
-                                                    <a class="dropzone-upload btn btn-sm btn-light-primary me-2">Upload
-                                                        All</a>
-                                                    <a class="dropzone-remove-all btn btn-sm btn-light-primary">Remove
-                                                        All</a>
+                                                    <a class="dropzone-select btn btn-sm btn-primary me-2">أرفاق
+                                                        ملفات</a>
+                                                    <a class="dropzone-upload btn btn-sm btn-light-primary me-2">تحميل
+                                                        الكل</a>
+                                                    <a class="dropzone-remove-all btn btn-sm btn-light-primary">ازالة
+                                                        الكل</a>
                                                 </div>
                                                 <!--end::Controls-->
 
@@ -452,8 +428,7 @@
                                             </div>
                                             <!--end::Dropzone-->
                                             <!--begin::Hint-->
-                                            <span class="form-text fs-6 text-muted">Max file size is 1MB per
-                                                file.</span>
+                                            <span class="form-text fs-6 text-muted">الحد الأقصى 100 mb</span>
                                             <!--end::Hint-->
                                         </div>
                                         <!--end::Input group-->
@@ -465,6 +440,7 @@
                         </div>
                     </div>
                     <!--end::Modal - Upload File-->
+                    {{--
                     <!--begin::Modal - New Product-->
                     <div class="modal fade" id="kt_modal_move_to_folder" tabindex="-1" aria-hidden="true">
                         <!--begin::Modal dialog-->
@@ -841,9 +817,10 @@
                             </div>
                         </div>
                     </div>
-                    <!--end::Modal - Move file-->
+                    <!--end::Modal - Move file--> --}}
                 </div>
                 <!--end:::Tab pane-->
+                {{--
                 <!--begin:::Tab pane-->
                 <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
                     <!--begin::Card-->
@@ -1301,7 +1278,8 @@
                     </div>
                     <!--end::Card-->
                 </div>
-                <!--end:::Tab pane-->
+                <!--end:::Tab pane--> --}}
+                {{--
                 <!--begin:::Tab pane-->
                 <div class="tab-pane fade" id="kt_user_view_overview_events_and_logs_tab" role="tabpanel">
                     <!--begin::Card-->
@@ -1752,7 +1730,7 @@
                     </div>
                     <!--end::Card-->
                 </div>
-                <!--end:::Tab pane-->
+                <!--end:::Tab pane--> --}}
             </div>
             <!--end:::Tab content-->
         </div>
@@ -1770,7 +1748,7 @@
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_update_user_header">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">تعديل طالب</h2>
+                    <h2 class="fw-bolder">تعديل بيانات طالب</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
@@ -1814,7 +1792,7 @@
                                         style="background-image: url({{asset('assets/media/avatars/blank.png')}})">
                                         <!--begin::Preview existing avatar-->
                                         <div class="image-input-wrapper w-125px h-125px"
-                                            style="background-image: url({{$student->getPicture()}});">
+                                            style="background-image: url({{$student_picture}});">
                                         </div>
                                         <!--end::Preview existing avatar-->
                                         <!--begin::Label-->
@@ -2064,6 +2042,7 @@
         <!--end::Modal dialog-->
     </div>
     <!--end::Modal - Update student details-->
+    {{--
     <!--begin::Modal - Update email-->
     <div class="modal fade" id="kt_modal_update_email" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -2160,7 +2139,8 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Update email-->
+    <!--end::Modal - Update email--> --}}
+    {{--
     <!--begin::Modal - Update password-->
     <div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -2262,7 +2242,8 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Update password-->
+    <!--end::Modal - Update password--> --}}
+    {{--
     <!--begin::Modal - Update role-->
     <div class="modal fade" id="kt_modal_update_role" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -2454,7 +2435,8 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Update role-->
+    <!--end::Modal - Update role--> --}}
+    {{--
     <!--begin::Modal - Add task-->
     <div class="modal fade" id="kt_modal_add_auth_app" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -2524,7 +2506,8 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Add task-->
+    <!--end::Modal - Add task--> --}}
+    {{--
     <!--begin::Modal - Add task-->
     <div class="modal fade" id="kt_modal_add_one_time_password" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -2625,7 +2608,7 @@
         </div>
         <!--end::Modal dialog-->
     </div>
-    <!--end::Modal - Add task-->
+    <!--end::Modal - Add task--> --}}
     <!--begin::Modal - edit notes-->
     <div class="modal fade" tabindex="-1" id="kt_modal_edit_notes">
         <div class="modal-dialog">
@@ -2673,7 +2656,6 @@
 @endsection
 @section('scripts')
 <script>
-
     if(window.location.search == "?edit-user"){
         $(document).ready(function(){
         $("#kt_modal_update_details").modal('show');

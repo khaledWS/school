@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
+
 function uploadImage($folder, $image, $optional = null)
 {
     if ($optional === "test") {
@@ -46,4 +48,14 @@ function getPhotoPath($name, $path){
 function getFilePath($name, $path)
 {
     return ($name !== null) ? asset("storage/".$path.'/'.$name)  : "";
+}
+
+
+
+function downloadFile($request, $filename)
+{
+    $x = explode('.', $filename);
+    $extension = end($x);
+    return Storage::disk($request->disk)->download($filename,$request->name.'.'.$extension) ;
+
 }

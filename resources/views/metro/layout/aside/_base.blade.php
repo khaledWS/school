@@ -8,7 +8,7 @@
         <!--begin::Logo-->
         <a href="/">
             <!-- <img alt="Logo" src="assets/media/logos/logo-1-dark.svg" class="h-25px logo" /> -->
-            <img src="{{asset('assets/media/icons/duotune/communication/com001.svg')}}" class="h-40px me-10" />
+            <img alt="website-logo" src="{{asset('assets/media/icons/duotune/communication/com001.svg')}}" class="h-40px me-10" />
             <!-- <img alt="Logo" src="assets/media/logos/logo1.svg" class="h-50px logo" /> -->
         </a>
         <!--end::Logo-->

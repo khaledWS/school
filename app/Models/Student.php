@@ -50,7 +50,7 @@ class Student extends Model
         }
         foreach (unserialize($this->documents) as $file) {
             $filee = File::where('file_name', 'like', $file)->get();
-            $filesPaths[$filee[0]->name] = $filee[0]->file_name;
+            $filesPaths[$filee[0]->original_name] = $filee[0]->file_name;
         }
         return $filesPaths;
     }

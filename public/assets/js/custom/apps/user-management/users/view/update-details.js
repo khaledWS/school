@@ -19,7 +19,8 @@ var KTUsersUpdateDetails = function () {
         placeholder: 'Type your text here...',
         theme: 'snow' // or 'bubble'
     });
-
+    const stdId = $('input[name="std_id"]').val()
+    const test = $('#test-button');
     // Init add schedule modal
     var initUpdateDetails = () => {
 
@@ -278,12 +279,147 @@ var KTUsersUpdateDetails = function () {
 
     }
 
+    var initUpdateFiles = () => {
+        const tbody = $('#kt_file_manager_list').children('tbody');
+        // const tableRow = '';
+        // tableRow += "<tr>";
+        // tableRow += "<td>";
+        // tableRow += "<div class='d-flex align-items-center'>";
+        // tableRow += "<span class='svg-icon svg-icon-2x svg-icon-primary me-4'>";
+        // tableRow += ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">';
+        // tableRow += '<path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22Z" fill="black" />';
+        // tableRow += ' <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black" />';
+        // tableRow += '</svg>';
+        // tableRow += "</span>";
+        // tableRow += "<span class='text-gray-800 text-hover-primary'>";
+        // tableRow += key;
+        // tableRow += "</span>";
+        // tableRow += "</div>";
+        // tableRow += "</td>";
+        // tableRow += '<td class="text-end" data-kt-filemanager-table="action_dropdown">';
+        // tableRow += '<div class="d-flex justify-content-end">';
+        // tableRow += '<div class="ms-2">';
+        // tableRow += '<button type="button"class="btn btn-sm btn-icon btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">';
+        // tableRow += '<span class="svg-icon svg-icon-5 m-0">';
+        // tableRow += '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">';
+        // tableRow += '<rect x="10" y="10" width="4" height="4" rx="2" fill="black" />';
+        // tableRow += '<rect x="17" y="10" width="4" height="4" rx="2" fill="black" />';
+        // tableRow += '<rect x="3" y="10" width="4" height="4" rx="2" fill="black" />';
+        // tableRow += '</svg>';
+        // tableRow += '</span>';
+        // tableRow += '</button>';
+        // tableRow += ' <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-150px py-4" data-kt-menu="true">';
+        // tableRow += '<div class="menu-item px-3">';
+        // tableRow += '<a href="';
+        // tableRow += fileDownloadUrl;
+        // tableRow += '" class="menu-link px-3">';
+        // tableRow += 'تنزيل الملف';
+        // tableRow += '</a>';
+        // tableRow += '</div>';
+        // tableRow += '<div class="menu-item px-3">';
+        // tableRow += '<a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row">';
+        // tableRow += ' حذف';
+        // tableRow += '</a>';
+        // tableRow += '</div>';
+        // tableRow += '</div>';
+        // tableRow += '</div>';
+        // tableRow += '</div>';
+        // tableRow += "</td>";
+        // tableRow += "</tr>";
+        test.on('click', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'GET',
+                url: '/students/get-files/' + stdId,
+                headers: { 'X-CSRF-TOKEN': $('*[name="_token"]').val() },
+                success: function (data) {
+                    //clears the table
+                    tbody.empty()
+                    console.log(data);
+                    for (let key in data) {
+                        let fileDownloadUrl = 'download/' + data[key] + '?disk=student-files$name=' + key;
+                        let tableRow = '';
+                        tableRow += "<tr>";
+                        tableRow += "<td>";
+                        tableRow += "<div class='d-flex align-items-center'>";
+                        tableRow += "<span class='svg-icon svg-icon-2x svg-icon-primary me-4'>";
+                        tableRow += ' <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">';
+                        tableRow += '<path opacity="0.3" d="M19 22H5C4.4 22 4 21.6 4 21V3C4 2.4 4.4 2 5 2H14L20 8V21C20 21.6 19.6 22 19 22Z" fill="black" />';
+                        tableRow += ' <path d="M15 8H20L14 2V7C14 7.6 14.4 8 15 8Z" fill="black" />';
+                        tableRow += '</svg>';
+                        tableRow += "</span>";
+                        tableRow += "<span class='text-gray-800 text-hover-primary'>";
+                        tableRow += key;
+                        tableRow += "</span>";
+                        tableRow += "</div>";
+                        tableRow += "</td>";
+                        tableRow += '<td class="text-end" data-kt-filemanager-table="action_dropdown">';
+                        tableRow += '<div class="d-flex justify-content-end">';
+                        tableRow += '<div class="ms-2">';
+                        tableRow += '<button type="button"class="btn btn-sm btn-icon btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">';
+                        tableRow += '<span class="svg-icon svg-icon-5 m-0">';
+                        tableRow += '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">';
+                        tableRow += '<rect x="10" y="10" width="4" height="4" rx="2" fill="black" />';
+                        tableRow += '<rect x="17" y="10" width="4" height="4" rx="2" fill="black" />';
+                        tableRow += '<rect x="3" y="10" width="4" height="4" rx="2" fill="black" />';
+                        tableRow += '</svg>';
+                        tableRow += '</span>';
+                        tableRow += '</button>';
+                        tableRow += ' <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-150px py-4" data-kt-menu="true">';
+                        tableRow += '<div class="menu-item px-3">';
+                        tableRow += '<a href="';
+                        tableRow += fileDownloadUrl;
+                        tableRow += '" class="menu-link px-3">';
+                        tableRow += 'تنزيل الملف';
+                        tableRow += '</a>';
+                        tableRow += '</div>';
+                        tableRow += '<div class="menu-item px-3">';
+                        tableRow += '<a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row">';
+                        tableRow += ' حذف';
+                        tableRow += '</a>';
+                        tableRow += '</div>';
+                        tableRow += '</div>';
+                        tableRow += '</div>';
+                        tableRow += '</div>';
+                        tableRow += "</td>";
+                        tableRow += "</tr>";
+                        tbody.append(tableRow);
+                    }
+
+                },
+                error: function () {
+                    // Show popup confirmation
+                    Swal.fire({
+                        text: "ERROR",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    }).then(function (result) {
+                        if (result.isConfirmed) {
+                            notesModal.hide();
+                        }
+                    });
+
+                }
+
+            });
+
+        });
+
+
+    }
+
     return {
         // Public functions
         init: function () {
             initUpdateDetails();
             initQuillEditor();
             initUpdateNotes();
+            initUpdateFiles();
         }
     };
 }();

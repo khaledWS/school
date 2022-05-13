@@ -282,6 +282,7 @@ var KTUsersViewMain = function () {
                     progressBar.querySelector('.dropzone-start').style.opacity = "0";
                 });
             }, 300);
+
         });
 
         // Setup the buttons for all transfers
@@ -317,10 +318,10 @@ var KTUsersViewMain = function () {
 return {
     // Public functions
     init: function () {
-        initLoginSession();
-        initSignOutUser();
-        initDeleteTwoStep();
-        initEmailPreferenceForm();
+        // initLoginSession();
+        // initSignOutUser();
+        // initDeleteTwoStep();
+        // initEmailPreferenceForm();
         initFileUpload();
     }
 };

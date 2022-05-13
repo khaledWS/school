@@ -57,6 +57,8 @@ class StudentController extends Controller
                     $files[] = $filee;
                 }
                 $data['documents'] = serialize($files);
+            } else {
+                $data['documents'] = serialize([]);
             }
             $data->forget('files');
             $data['notes'] = json_encode([]);
@@ -86,7 +88,10 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('app.admin.student.view', compact('student'));
+        $student_picture = $student->getPicture();
+        $student_fullName = $student->fullName();
+        $student_files = empty($student->getFiles()) ? null : $student->getFiles();
+        return view('app.admin.student.view', compact('student', 'student_picture', 'student_fullName', 'student_files'));
     }
 
     /**
@@ -142,16 +147,21 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        return 'DESTORY';
     }
 
-
-
+    /**
+     * api updateNotes
+     *
+     * @param  Request $request
+     * @param  Student $student
+     * @return string "success" or "fail"
+     */
     public function updateNotes(Request $request, Student $student)
     {
         if ($student->id != $request->std_id) {
             // dd([$student->id, $request->std_id]);
-            abort(500);
+            return "fail";
         }
         try {
             $student->notes = $request->doc;
@@ -162,17 +172,46 @@ class StudentController extends Controller
         }
     }
 
+
+    /**
+     * api updateFiles
+     *
+     * @param  Request $request
+     * @param  Student $student
+     * @return string "success" or "fail"
+     */
     public function updateFiles(Request $request, Student $student)
     {
         if ($student->id != $request->std_id) {
             // dd([$student->id, $request->std_id]);
-            abort(500);
+            return "fail";
         }
         try {
-
+            $documents = unserialize($student->documents);
+            $file = $request->file;
+            $fileName = $this->saveFile($file, 'file', $student->first_name, 'student-files');
+            $documents[] = $fileName;
+            $student->documents = serialize($documents);
+            $student->save();
             return 'success';
         } catch (\Exception $ex) {
             return "fail";
+        }
+    }
+
+    public function getFiles(Request $request, Student $student)
+    {
+        try {
+            if ($request->ajax()) {
+                $student_files = empty($student->getFiles()) ? null : $student->getFiles();
+                // dd($student_files);
+                return $student_files;
+            } else {
+                return redirect()->route('list-students');
+            }
+        } catch (\Exception $ex) {
+            dd($ex);
+            return redirect()->Route('list-students');
         }
     }
 

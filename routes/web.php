@@ -21,35 +21,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('/students')->group(function (){
-Route::get('/', [StudentController::class,'index'])->name('list-students');
-Route::post('/create-student',[StudentController::class,'store'])->name('create-student');
-Route::get('/delete-student', function (){
-    return 'DELETE';
-})->name('delete-student');
-Route::get('/download/{filename}', function (Request $request,$filename){
-    $x = explode('.', $filename);
-    $extension = end($x);
-   return Storage::disk('student-files')->download($filename,$request->name.'.'.$extension) ;
+//download the given filename with other parameters like diskname og name in the request
+Route::get('/download/{filename}', function (Request $request, $filename) {
+    downloadFile($request, $filename);
 })->name('download');
 
-Route::get('/{student}',[StudentController::class,'show'])->name('view-student');
-
-Route::post('/update-student/{student}',[StudentController::class,'update'])->name('update-student');
-
-Route::post('/{student}/update-notes', [StudentController::class, 'updateNotes']);
-Route::post('/{student}/update-files', [StudentController::class, 'updateFiles']);
-
-
-
+//Student Routes
+Route::prefix('/students')->group(function () {
+    //Index
+    Route::get('/', [StudentController::class, 'index'])->name('list-students');
+    //Create-student
+    Route::post('/create-student', [StudentController::class, 'store'])->name('create-student');
+    //Delelte-student
+    Route::get('/{student}/delete-student', [StudentController::class, 'destroy'])->name('delete-student');
+    //View-student
+    Route::get('/{student}', [StudentController::class, 'show'])->name('view-student');
+    //Update-student
+    Route::post('/update-student/{student}', [StudentController::class, 'update'])->name('update-student');
+    //Update-Student Notes
+    Route::post('/{student}/update-notes', [StudentController::class, 'updateNotes']);
+    //Update-Student Files
+    Route::post('/{student}/update-files', [StudentController::class, 'updateFiles']);
+    Route::get('/get-files/{student}',[StudentController::class,'getFiles']);
 });
-
-
-// Route::get('create', [StudentController::class,'create']);
-
-
-
-
 
 Route::get('/test', function () {
     return view('app.dashboards.student-dashboard');
@@ -58,4 +52,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -737,7 +737,7 @@
                     <!--begin::Menu wrapper-->
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"
                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
-                        <img src="{{asset('assets/media/avatars/blank.png')}}"  />
+                        <img alt="user-profile" src="{{asset('assets/media/avatars/blank.png')}}"  />
                     </div>
 
                     <!--begin::User account menu-->
