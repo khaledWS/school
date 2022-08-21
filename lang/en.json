@@ -3,5 +3,28 @@
     "The :attribute must contain at least one number.": "The :attribute must contain at least one number.",
     "The :attribute must contain at least one symbol.": "The :attribute must contain at least one symbol.",
     "The :attribute must contain at least one uppercase and one lowercase letter.": "The :attribute must contain at least one uppercase and one lowercase letter.",
-    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute."
+    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute.",
+    "Search student": "search students",
+    "add student": "Add Student",
+    "actions": "actions",
+
+    "profile picture": "profile picture",
+    "files" : "files",
+    "student name": "student name",
+    "student middle name": "middle name",
+    "student mother name": "mother name",
+    "student last name" : "last name",
+    "birth date": "birth date",
+    "mobile number": "mobile number",
+    "phone number": "phone number",
+    "email": "email",
+    "address" : "address",
+    "personal id number" : "SSN",
+    "sex" : "sex",
+    "male" : "ذكر",
+    "female" : "أنثى",
+    "Religion" : "religion",
+
+    "add" : "add",
+    "cancel" : "cancel"
 }
