@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 
 function uploadImage($folder, $image, $optional = null)
@@ -34,8 +35,9 @@ function uploadFile($folder, $image, $optional = null)
  * @param string $path The Path to the file ex. Image/Vendor
  * @return string full Uri
  */
-function getPhotoPath($name, $path){
-    return ($name !== null) ? asset("storage/".$path.'/'.$name)  : "";
+function getPhotoPath($name, $path)
+{
+    return ($name !== null) ? asset("storage/" . $path . '/' . $name)  : "";
 }
 
 
@@ -47,7 +49,7 @@ function getPhotoPath($name, $path){
  */
 function getFilePath($name, $path)
 {
-    return ($name !== null) ? asset("storage/".$path.'/'.$name)  : "";
+    return ($name !== null) ? asset("storage/" . $path . '/' . $name)  : "";
 }
 
 
@@ -56,6 +58,20 @@ function downloadFile($request, $filename)
 {
     $x = explode('.', $filename);
     $extension = end($x);
-    return Storage::disk($request->disk)->download($filename,$request->name.'.'.$extension) ;
+    return Storage::disk($request->disk)->download($filename, $request->name . '.' . $extension);
+}
 
+
+/**
+ * get the column names for display based on the current locale
+ *
+ * @param  string $model the name of the model
+ * @param  string $column the name of the column
+ * @return array
+ */
+function getFieldNameFromModel(string $model, string $column): string
+{
+    //add the proper namespace before the  class name
+    $class = '\App\Models\\' . $model;
+    return $class::$attr_multi[App::getLocale()][$column];
 }

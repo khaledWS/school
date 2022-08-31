@@ -21,7 +21,7 @@
                     </span>
                     <!--end::Svg Icon-->
                     <input type="text" data-kt-user-table-filter="search"
-                        class="form-control form-control-solid w-250px ps-14" placeholder="بحث طلاب">
+                        class="form-control form-control-solid w-250px ps-14" placeholder="{{__('Search student')}}">
                 </div>
                 <!--end::Search-->
             </div>
@@ -157,7 +157,7 @@
                                 <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect>
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->اضافة طالب
+                        <!--end::Svg Icon-->{{__('add student')}}
                     </button>
                     <!--end::Add user-->
 
@@ -312,7 +312,7 @@
                             <!--begin::Modal header-->
                             <div class="modal-header" id="kt_modal_add_user_header">
                                 <!--begin::Modal title-->
-                                <h2 class="fw-bolder">اضافة طالب</h2>
+                                <h2 class="fw-bolder">{{__('add student')}}</h2>
                                 <!--end::Modal title-->
                                 <!--begin::Close-->
                                 <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -351,59 +351,61 @@
                                             {{-- <div class="col-md-3"></div> --}}
                                             <div class="col-md-3">
                                                 <!--begin::Label-->
-                                                <label class="required d-block fw-bold fs-6 mb-5">الصورة</label>
-                                                <!--end::Label-->
-                                                <!--begin::Image input-->
-                                                <div class="image-input image-input-outline image-input-empty"
-                                                    data-kt-image-input="true"
-                                                    style="background-image: url({{asset('assets/media/avatars/blank.png')}})">
-                                                    <!--begin::Preview existing avatar-->
-                                                    <div class="image-input-wrapper w-125px h-125px"
-                                                        style="background-image: none;">
-                                                    </div>
-                                                    <!--end::Preview existing avatar-->
-                                                    <!--begin::Label-->
-                                                    <label
-                                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                        title="" data-bs-original-title="Change avatar">
-                                                        <i class="bi bi-pencil-fill fs-7"></i>
-                                                        <!--begin::Inputs-->
-                                                        <input type="file" name="picture" accept=".png, .jpg, .jpeg">
-                                                        <input type="hidden" name="avatar_remove">
-                                                        <!--end::Inputs-->
-                                                    </label>
+                                                <label class="required d-block fw-bold fs-6 mb-5" {{__('profile
+                                                    picture')}}</label>
                                                     <!--end::Label-->
-                                                    <!--begin::Cancel-->
-                                                    <span
-                                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                                        title="" data-bs-original-title="Cancel avatar">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <!--end::Cancel-->
-                                                    <!--begin::Remove-->
-                                                    <span
-                                                        class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                        data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                                        title="" data-bs-original-title="Remove avatar">
-                                                        <i class="bi bi-x fs-2"></i>
-                                                    </span>
-                                                    <!--end::Remove-->
-                                                </div>
-                                                <div class="image-input image-input-outline image-input-empty"
-                                                data-kt-image-input="true"
-                                                style="background-image: url({{asset('assets/media/avatars/blank.png')}})">
-                                                </div>
-                                                <!--end::Image input-->
-                                                <!--begin::Hint-->
-                                                <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
-                                                <!--end::Hint-->
+                                                    <!--begin::Image input-->
+                                                    <div class="image-input image-input-outline image-input-empty"
+                                                        data-kt-image-input="true"
+                                                        style="background-image: url({{asset('assets/media/avatars/blank.png')}})">
+                                                        <!--begin::Preview existing avatar-->
+                                                        <div class="image-input-wrapper w-125px h-125px"
+                                                            style="background-image: none;">
+                                                        </div>
+                                                        <!--end::Preview existing avatar-->
+                                                        <!--begin::Label-->
+                                                        <label
+                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                                            title="" data-bs-original-title="Change avatar">
+                                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                                            <!--begin::Inputs-->
+                                                            <input type="file" name="picture"
+                                                                accept=".png, .jpg, .jpeg">
+                                                            <input type="hidden" name="avatar_remove">
+                                                            <!--end::Inputs-->
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Cancel-->
+                                                        <span
+                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                                            title="" data-bs-original-title="Cancel avatar">
+                                                            <i class="bi bi-x fs-2"></i>
+                                                        </span>
+                                                        <!--end::Cancel-->
+                                                        <!--begin::Remove-->
+                                                        <span
+                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                                            title="" data-bs-original-title="Remove avatar">
+                                                            <i class="bi bi-x fs-2"></i>
+                                                        </span>
+                                                        <!--end::Remove-->
+                                                    </div>
+                                                    <div class="image-input image-input-outline image-input-empty"
+                                                        data-kt-image-input="true"
+                                                        style="background-image: url({{asset('assets/media/avatars/blank.png')}})">
+                                                    </div>
+                                                    <!--end::Image input-->
+                                                    <!--begin::Hint-->
+                                                    <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                                    <!--end::Hint-->
                                             </div>
                                             <div class="col-md-3">
                                             </div>
                                             <div class="col-md-3 fv-row">
-                                                <label class="fs-6 fw-bold mb-5">ملفات</label>
+                                                <label class="fs-6 fw-bold mb-5">{{__('files')}}</label>
                                                 <!--begin::Dropzone-->
                                                 {{-- <div class="dropzone dz-clickable" id="kt_modal_files_attachments">
                                                     <!--begin::Message-->
@@ -449,7 +451,7 @@
                                             <!--begin::Col-->
                                             <div class="col-md-3 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">اسم الطالب</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{getFieldNameFromModel('Student', 'first_name')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input class="form-control form-control-solid" placeholder=""
@@ -460,7 +462,8 @@
                                             <!--begin::Col-->
                                             <div class="col-md-3 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">اسم الأب</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{__('student middle
+                                                    name')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input class="form-control form-control-solid" placeholder=""
@@ -471,7 +474,7 @@
                                             <!--begin::Col-->
                                             <div class="col-md-3 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">اسم الام</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{__('student mother name')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input class="form-control form-control-solid" placeholder=""
@@ -482,7 +485,7 @@
                                             <!--begin::Col-->
                                             <div class="col-md-3 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">اسم العائلة</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{__('student last name')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input class="form-control form-control-solid" placeholder=""
@@ -497,7 +500,7 @@
                                             <!--begin::Col-->
                                             <div class="col-md-4 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">رقم الهوية</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{__('personal id number')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input class="form-control form-control-solid" placeholder=""
@@ -508,14 +511,14 @@
                                             <!--begin::Col-->
                                             <div id="tt" class="col-md-4 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">الجنس</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{__('sex')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <select name="gender"
                                                     class=" form-control form-select form-select-solid">
-                                                    <option selected disabled>اختر الجنس</option>
-                                                    <option value="male">ذكر</option>
-                                                    <option value="female">انثى</option>
+                                                    <option selected disabled>{{__('sex')}}</option>
+                                                    <option value="male">{{__('male')}}</option>
+                                                    <option value="female">{{__('female')}}</option>
                                                 </select>
                                                 <!--end::Input-->
                                             </div>
@@ -523,7 +526,7 @@
                                             <!--begin::Col-->
                                             <div class="col-md-4 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">الديانة</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{__('religion')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <select class="form-select  form-select-solid" name="religion" id="">
@@ -627,7 +630,8 @@
                                             <!--end::Col-->
                                         </div>
                                         <!--end::Input group-->
-                                        {{-- <!--begin::Input group-->
+                                        {{--
+                                        <!--begin::Input group-->
                                         <div class="fv-row mb-15">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold mb-2">ملاحظات</label>
@@ -711,8 +715,8 @@
                                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                         <a href="{{route('view-student',$student->id)}}">
                                             <div class="symbol-label">
-                                                <img src="{{$student->getPicture()}}"
-                                                    alt="{{$student->fullName()}}" class="w-100">
+                                                <img src="{{$student->getPicture()}}" alt="{{$student->fullName()}}"
+                                                    class="w-100">
                                             </div>
                                         </a>
                                     </div>
@@ -784,8 +788,9 @@
                                     <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
                                         <a href="{{route('view-student',$student->id)}}">
                                             <div class="symbol-label">
-                                                <img style="background-image: url({{asset('assets/media/avatars/blank.png')}})" src="{{$student->getPicture()}}"
-                                                    alt="{{$student->fullName()}}" class="w-100">
+                                                <img style="background-image: url({{asset('assets/media/avatars/blank.png')}})"
+                                                    src="{{$student->getPicture()}}" alt="{{$student->fullName()}}"
+                                                    class="w-100">
                                             </div>
                                         </a>
                                     </div>

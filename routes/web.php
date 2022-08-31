@@ -30,6 +30,7 @@ Route::get('/download/{filename}', function (Request $request, $filename) {
 Route::prefix('/students')->group(function () {
     //Index
     Route::get('/', [StudentController::class, 'index'])->name('list-students');
+    Route::get('/create-student', [StudentController::class, 'create'])->name('create-student');
     //Create-student
     Route::post('/create-student', [StudentController::class, 'store'])->name('create-student');
     //Delelte-student

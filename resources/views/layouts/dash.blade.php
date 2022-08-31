@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 
 <!-- <html lang="ar"> -->
+@if (App::isLocale('ar'))
 <html lang="ar" direction="rtl" dir="rtl" style="direction: rtl">
+@else
+<html lang="en" direction="ltr" dir="ltr" style="direction: ltr">
+@endif
+
 <!--begin::Head-->
 
 <head>
@@ -22,8 +27,13 @@
     @yield('page-vendor-sheets')
     <!--end::Page Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    @if (App::isLocale('ar'))
     <link href="{{asset('assets/plugins/global/plugins.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/css/style.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
+    @else
+    <link href="{{asset('assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+    @endif
     <!--end::Global Stylesheets Bundle-->
     <!--begin::page style-->
     @yield('style')
