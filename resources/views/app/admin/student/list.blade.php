@@ -451,7 +451,7 @@
                                             <!--begin::Col-->
                                             <div class="col-md-3 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required fs-6 fw-bold mb-2">{{__('student name')}}</label>
+                                                <label class="required fs-6 fw-bold mb-2">{{getFieldNameFromModel('Student', 'first_name')}}</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input class="form-control form-control-solid" placeholder=""

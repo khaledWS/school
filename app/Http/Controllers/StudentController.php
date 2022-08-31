@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Models\File;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,7 +32,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return redirect()->route('list-students', 'create');
+        return view('app.admin.student.create-student');
     }
 
     /**
@@ -61,8 +62,8 @@ class StudentController extends Controller
                 $data['documents'] = serialize([]);
             }
             $data->forget('files');
-            $data['notes'] = json_encode([]);
-            $student = Student::create($data->toArray());
+            // $data['notes'] = json_encode([]);
+            // $student = Student::create($data->toArray());
             DB::commit();
             return redirect()->route('list-students')->with(['success' => 'Student saved']);
         } catch (\Exception $ex) {

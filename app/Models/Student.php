@@ -21,6 +21,53 @@ class Student extends Model
     //     'documents' => 'array'
     // ];
 
+    public static  $attr_multi = [
+        'en' => [
+            'first_name' => "First name",
+            'middle_name' => 'middle name',
+            'last_name' => 'last name',
+            'mother_name' => 'mother name',
+            'gender' => 'gender',
+            'id_number' => 'Personal ID Number',
+            'religion' => 'religion',
+            'birth_date' => 'birth date',
+            'addmission_date' => 'admission date',
+            'leaving_Date' => 'leaving date',
+            'enrolled' => 'enrolled',
+            'picture' => 'Profile picture',
+            'email' => 'email',
+            'user_name' => 'user name',
+            'password' => 'password',
+            'address' => 'address',
+            'phone' => 'phone',
+            'mobile' => 'mobile',
+            'documents' => 'documents',
+            'notes' => 'notes',
+        ],
+        'ar' => [
+            'first_name' => "إسم الطالب",
+            'middle_name' => 'إسم الأب',
+            'last_name' => 'إسم العائلة',
+            'mother_name' => 'إسم الام',
+            'gender' => 'الجنس',
+            'id_number' => 'رقم البطاقة الشخصية',
+            'religion' => 'الديانة',
+            'birth_date' => 'تاريخ الميلاد',
+            'addmission_date' => 'تاري الإلتحاق',
+            'leaving_Date' => 'تاريخ المغادرة',
+            'enrolled' => 'مسجل',
+            'picture' => 'الصورة الشخصية',
+            'email' => 'البريد الالكتروني',
+            'user_name' => 'اسم المستخدم',
+            'password' => 'كلمة السر',
+            'address' => 'العنوان',
+            'phone' => 'رقم الهاتف',
+            'mobile' => 'رقم المحمول',
+            'documents' => 'الملفات',
+            'notes' => 'الملاحظات',
+        ]
+    ];
+
     /**
      * fullName
      *
